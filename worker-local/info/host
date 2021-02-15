@@ -1,1 +1,3 @@
-Please put a description of this build host here
+local-worker is just a plain buildbot-worker instance that runs jobs locally for
+me to do what I need to do. Other workers will be latent workers such as Docker
+or Kubernetes.
