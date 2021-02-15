@@ -1,0 +1,3 @@
+# vim: filetype=cfg
+[MASTER]
+init-hook='import sys; sys.path.append("./master/local-builder"); sys.path.append("./venv/buildbot/lib"); sys.path.append("./venv/buildbot/lib64");'
