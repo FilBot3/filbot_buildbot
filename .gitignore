@@ -524,3 +524,12 @@ cython_debug/
 
 # Twistd PID files
 twistd.pid
+
+
+
+
+
+
+
+## SQLite Files
+*.sqlite
