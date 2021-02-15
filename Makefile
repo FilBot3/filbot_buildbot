@@ -1,4 +1,4 @@
-.PHONY: run-master
+.PHONY: run-master logs venv
 
 run-master:
 	rm master/twistd.log
@@ -6,3 +6,7 @@ run-master:
 
 logs:
 	cat master/twistd.log
+
+venv:
+	python -m venv venv/buildbot
+
