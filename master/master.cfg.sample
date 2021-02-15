@@ -10,7 +10,7 @@ from buildbot.plugins import *
 # a shorter alias to save typing.
 c = BuildmasterConfig = {}
 
-# WORKERS
+####### WORKERS
 
 # The 'workers' list defines the set of recognized workers. Each element is
 # a Worker object, specifying a unique worker name and password.  The same
@@ -24,33 +24,33 @@ c['workers'] = [worker.Worker("example-worker", "pass")]
 # --master option)
 c['protocols'] = {'pb': {'port': 9989}}
 
-# CHANGESOURCES
+####### CHANGESOURCES
 
 # the 'change_source' setting tells the buildmaster how it should find out
 # about source code changes.  Here we point to the buildbot version of a python hello-world project.
 
 c['change_source'] = []
 c['change_source'].append(changes.GitPoller(
-    'git://github.com/buildbot/hello-world.git',
-    workdir='gitpoller-workdir', branch='master',
-    pollInterval=300))
+        'git://github.com/buildbot/hello-world.git',
+        workdir='gitpoller-workdir', branch='master',
+        pollInterval=300))
 
-# SCHEDULERS
+####### SCHEDULERS
 
 # Configure the Schedulers, which decide how to react to incoming changes.  In this
 # case, just kick off a 'runtests' build
 
 c['schedulers'] = []
 c['schedulers'].append(schedulers.SingleBranchScheduler(
-    name="all",
-    change_filter=util.ChangeFilter(branch='master'),
-    treeStableTimer=None,
-    builderNames=["runtests"]))
+                            name="all",
+                            change_filter=util.ChangeFilter(branch='master'),
+                            treeStableTimer=None,
+                            builderNames=["runtests"]))
 c['schedulers'].append(schedulers.ForceScheduler(
-    name="force",
-    builderNames=["runtests"]))
+                            name="force",
+                            builderNames=["runtests"]))
 
-# BUILDERS
+####### BUILDERS
 
 # The 'builders' list defines the Builders, which tell Buildbot how to perform a build:
 # what steps, and which workers can execute them.  Note that any particular build will
@@ -58,8 +58,7 @@ c['schedulers'].append(schedulers.ForceScheduler(
 
 factory = util.BuildFactory()
 # check out the source
-factory.addStep(steps.Git(
-    repourl='git://github.com/buildbot/hello-world.git', mode='incremental'))
+factory.addStep(steps.Git(repourl='git://github.com/buildbot/hello-world.git', mode='incremental'))
 # run the tests (note that this will require that 'trial' is installed)
 factory.addStep(steps.ShellCommand(command=["trial", "hello"],
                                    env={"PYTHONPATH": "."}))
@@ -67,10 +66,10 @@ factory.addStep(steps.ShellCommand(command=["trial", "hello"],
 c['builders'] = []
 c['builders'].append(
     util.BuilderConfig(name="runtests",
-                       workernames=["example-worker"],
-                       factory=factory))
+      workernames=["example-worker"],
+      factory=factory))
 
-# BUILDBOT SERVICES
+####### BUILDBOT SERVICES
 
 # 'services' is a list of BuildbotService items like reporter targets. The
 # status of each build will be pushed to these targets. buildbot/reporters/*.py
@@ -78,7 +77,7 @@ c['builders'].append(
 
 c['services'] = []
 
-# PROJECT IDENTITY
+####### PROJECT IDENTITY
 
 # the 'title' string will appear at the top of this buildbot installation's
 # home pages (linked to the 'titleURL').
@@ -97,12 +96,12 @@ c['buildbotURL'] = "http://localhost:8010/"
 c['www'] = dict(port=8010,
                 plugins=dict(waterfall_view={}, console_view={}, grid_view={}))
 
-# DB URL
+####### DB URL
 
 c['db'] = {
     # This specifies what database buildbot uses to store its state.
     # It's easy to start with sqlite, but it's recommended to switch to a dedicated
     # database, such as PostgreSQL or MySQL, for use in production environments.
     # http://docs.buildbot.net/current/manual/configuration/global.html#database-specification
-    'db_url': "sqlite:///state.sqlite",
+    'db_url' : "sqlite:///state.sqlite",
 }
