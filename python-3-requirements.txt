@@ -4,6 +4,10 @@ autobahn==21.2.1
 Automat==20.2.0
 autopep8==1.5.5
 buildbot==2.10.0
+buildbot-console-view==2.10.0
+buildbot-grid-view==2.10.0
+buildbot-waterfall-view==2.10.0
+buildbot-www==2.10.0
 certifi==2020.12.5
 cffi==1.14.5
 chardet==4.0.0

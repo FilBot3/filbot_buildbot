@@ -522,3 +522,5 @@ dmypy.json
 # Cython debug symbols
 cython_debug/
 
+# Twistd PID files
+twistd.pid
